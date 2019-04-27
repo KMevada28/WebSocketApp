@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.iswm.socket.ISWMSocket;
+import com.websocketapp.response.D;
 import com.websocketapp.response.Data;
 import com.websocketapp.response.LocationResponse;
 
@@ -74,11 +75,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(response);
-            System.out.println("locationResponse Object"+jsonObject);
-            LocationResponse locationResponse = gson.fromJson(jsonObject.getJSONObject("data").toString(), LocationResponse.class);
-            System.out.println("locationResponse"+locationResponse.toString());
-            if (locationResponse != null) {
-                putMarker(locationResponse.getD().getData().getLat(), locationResponse.getD().getData().getLng());
+            System.out.println("locationResponse Object" + jsonObject);
+            if (jsonObject != null) {
+                JSONObject jsonObject1 = jsonObject.getJSONObject("d");
+                if (jsonObject1 != null) {
+                    JSONObject jsonObject2 = jsonObject1.getJSONObject("data");
+                    if (jsonObject2 != null) {
+                        putMarker(Double.parseDouble(jsonObject2.get("lat").toString()),
+                                Double.parseDouble(jsonObject2.get("lng").toString()));
+                    }
+                }
             }
 
         } catch (JSONException e) {
@@ -88,7 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onOpen(WebSocket webSocket, Response response) {
-        iswmSocket.subscribeTopic("gps_data:352093081655168");
+        iswmSocket.subscribeTopic("gps_data:356917057992922");
     }
 
     @Override
