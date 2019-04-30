@@ -74,7 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void run() {
                     mMap.clear();
                     mMap.addMarker(new MarkerOptions().position(latLng).title("Marker for Current Position"));
-                    mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(latLng , 14.0f) );
+                    mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(latLng , 17.0f) );
                     PolylineOptions options = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
                     for (int z = 0; z < list.size(); z++) {
                         LatLng point = list.get(z);
