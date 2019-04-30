@@ -2,247 +2,208 @@ package com.websocketapp.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Data
-{
-    @SerializedName("date_time_data")
-    private String date_time_data;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    @SerializedName("pdop")
-    private String pdop;
-
-    @SerializedName("io_data")
-    private String io_data;
-
-    @SerializedName("lng")
-    private double lng;
-
-    @SerializedName("odometer")
-    private String odometer;
-
-    @SerializedName("y_axis")
-    private String y_axis;
-
-    @SerializedName("x_axis")
-    private String x_axis;
-
-    @SerializedName("device_type")
-    private String device_type;
-
-    @SerializedName("ignition_status")
-    private String ignition_status;
-
-    @SerializedName("hdop")
-    private String hdop;
-
-    @SerializedName("speed")
-    private String speed;
-
-    @SerializedName("sat_count")
-    private String sat_count;
-
-    @SerializedName("z_axis")
-    private String z_axis;
-
-    @SerializedName("total_distance")
-    private String total_distance;
+public class Data {
 
     @SerializedName("imei")
-    private String imei;
-
-    @SerializedName("server_datetime")
-    private String server_datetime;
-
+    @Expose
+    private int imei;
+    @SerializedName("device_type")
+    @Expose
+    private String deviceType;
+    @SerializedName("date_time_data")
+    @Expose
+    private String dateTimeData;
     @SerializedName("lat")
+    @Expose
     private double lat;
-
+    @SerializedName("lng")
+    @Expose
+    private double lng;
+    @SerializedName("speed")
+    @Expose
+    private int speed;
+    @SerializedName("hdop")
+    @Expose
+    private int hdop;
+    @SerializedName("pdop")
+    @Expose
+    private int pdop;
     @SerializedName("direction")
-    private String direction;
+    @Expose
+    private int direction;
+    @SerializedName("sat_count")
+    @Expose
+    private int satCount;
+    @SerializedName("odometer")
+    @Expose
+    private int odometer;
+    @SerializedName("ignition_status")
+    @Expose
+    private int ignitionStatus;
+    @SerializedName("x_axis")
+    @Expose
+    private int xAxis;
+    @SerializedName("y_axis")
+    @Expose
+    private int yAxis;
+    @SerializedName("z_axis")
+    @Expose
+    private int zAxis;
+    @SerializedName("io_data")
+    @Expose
+    private IoData ioData;
+    @SerializedName("server_datetime")
+    @Expose
+    private String serverDatetime;
+    @SerializedName("total_distance")
+    @Expose
+    private double totalDistance;
 
-    public String getDate_time_data ()
-    {
-        return date_time_data;
-    }
-
-    public void setDate_time_data (String date_time_data)
-    {
-        this.date_time_data = date_time_data;
-    }
-
-    public String getPdop ()
-    {
-        return pdop;
-    }
-
-    public void setPdop (String pdop)
-    {
-        this.pdop = pdop;
-    }
-
-    public String getIo_data ()
-    {
-        return io_data;
-    }
-
-    public void setIo_data (String io_data)
-    {
-        this.io_data = io_data;
-    }
-
-    public double getLng ()
-    {
-        return lng;
-    }
-
-    public void setLng (double lng)
-    {
-        this.lng = lng;
-    }
-
-    public String getOdometer ()
-    {
-        return odometer;
-    }
-
-    public void setOdometer (String odometer)
-    {
-        this.odometer = odometer;
-    }
-
-    public String getY_axis ()
-    {
-        return y_axis;
-    }
-
-    public void setY_axis (String y_axis)
-    {
-        this.y_axis = y_axis;
-    }
-
-    public String getX_axis ()
-    {
-        return x_axis;
-    }
-
-    public void setX_axis (String x_axis)
-    {
-        this.x_axis = x_axis;
-    }
-
-    public String getDevice_type ()
-    {
-        return device_type;
-    }
-
-    public void setDevice_type (String device_type)
-    {
-        this.device_type = device_type;
-    }
-
-    public String getIgnition_status ()
-    {
-        return ignition_status;
-    }
-
-    public void setIgnition_status (String ignition_status)
-    {
-        this.ignition_status = ignition_status;
-    }
-
-    public String getHdop ()
-    {
-        return hdop;
-    }
-
-    public void setHdop (String hdop)
-    {
-        this.hdop = hdop;
-    }
-
-    public String getSpeed ()
-    {
-        return speed;
-    }
-
-    public void setSpeed (String speed)
-    {
-        this.speed = speed;
-    }
-
-    public String getSat_count ()
-    {
-        return sat_count;
-    }
-
-    public void setSat_count (String sat_count)
-    {
-        this.sat_count = sat_count;
-    }
-
-    public String getZ_axis ()
-    {
-        return z_axis;
-    }
-
-    public void setZ_axis (String z_axis)
-    {
-        this.z_axis = z_axis;
-    }
-
-    public String getTotal_distance ()
-    {
-        return total_distance;
-    }
-
-    public void setTotal_distance (String total_distance)
-    {
-        this.total_distance = total_distance;
-    }
-
-    public String getImei ()
-    {
+    public int getImei() {
         return imei;
     }
 
-    public void setImei (String imei)
-    {
+    public void setImei(int imei) {
         this.imei = imei;
     }
 
-    public String getServer_datetime ()
-    {
-        return server_datetime;
+    public String getDeviceType() {
+        return deviceType;
     }
 
-    public void setServer_datetime (String server_datetime)
-    {
-        this.server_datetime = server_datetime;
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
     }
 
-    public double getLat ()
-    {
+    public String getDateTimeData() {
+        return dateTimeData;
+    }
+
+    public void setDateTimeData(String dateTimeData) {
+        this.dateTimeData = dateTimeData;
+    }
+
+    public double getLat() {
         return lat;
     }
 
-    public void setLat (double lat)
-    {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public String getDirection ()
-    {
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getHdop() {
+        return hdop;
+    }
+
+    public void setHdop(int hdop) {
+        this.hdop = hdop;
+    }
+
+    public int getPdop() {
+        return pdop;
+    }
+
+    public void setPdop(int pdop) {
+        this.pdop = pdop;
+    }
+
+    public int getDirection() {
         return direction;
     }
 
-    public void setDirection (String direction)
-    {
+    public void setDirection(int direction) {
         this.direction = direction;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [date_time_data = "+date_time_data+", pdop = "+pdop+", io_data = "+io_data+", lng = "+lng+", odometer = "+odometer+", y_axis = "+y_axis+", x_axis = "+x_axis+", device_type = "+device_type+", ignition_status = "+ignition_status+", hdop = "+hdop+", speed = "+speed+", sat_count = "+sat_count+", z_axis = "+z_axis+", total_distance = "+total_distance+", imei = "+imei+", server_datetime = "+server_datetime+", lat = "+lat+", direction = "+direction+"]";
+    public int getSatCount() {
+        return satCount;
     }
+
+    public void setSatCount(int satCount) {
+        this.satCount = satCount;
+    }
+
+    public int getOdometer() {
+        return odometer;
+    }
+
+    public void setOdometer(int odometer) {
+        this.odometer = odometer;
+    }
+
+    public int getIgnitionStatus() {
+        return ignitionStatus;
+    }
+
+    public void setIgnitionStatus(int ignitionStatus) {
+        this.ignitionStatus = ignitionStatus;
+    }
+
+    public int getXAxis() {
+        return xAxis;
+    }
+
+    public void setXAxis(int xAxis) {
+        this.xAxis = xAxis;
+    }
+
+    public int getYAxis() {
+        return yAxis;
+    }
+
+    public void setYAxis(int yAxis) {
+        this.yAxis = yAxis;
+    }
+
+    public int getZAxis() {
+        return zAxis;
+    }
+
+    public void setZAxis(int zAxis) {
+        this.zAxis = zAxis;
+    }
+
+    public IoData getIoData() {
+        return ioData;
+    }
+
+    public void setIoData(IoData ioData) {
+        this.ioData = ioData;
+    }
+
+    public String getServerDatetime() {
+        return serverDatetime;
+    }
+
+    public void setServerDatetime(String serverDatetime) {
+        this.serverDatetime = serverDatetime;
+    }
+
+    public double getTotalDistance() {
+        return totalDistance;
+    }
+
+    public void setTotalDistance(double totalDistance) {
+        this.totalDistance = totalDistance;
+    }
+
 }
-			
-			

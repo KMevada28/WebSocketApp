@@ -1,38 +1,31 @@
 package com.websocketapp.response;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LocationResponse
-{
-    @SerializedName("t")
-    private String t;
+public class LocationResponse {
 
+    @SerializedName("t")
+    @Expose
+    private int t;
     @SerializedName("d")
+    @Expose
     private D d;
 
-    public String getT ()
-    {
+    public int getT() {
         return t;
     }
 
-    public void setT (String t)
-    {
+    public void setT(int t) {
         this.t = t;
     }
 
-    public D getD ()
-    {
+    public D getD() {
         return d;
     }
 
-    public void setD (D d)
-    {
+    public void setD(D d) {
         this.d = d;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [t = "+t+", d = "+d+"]";
-    }
 }
