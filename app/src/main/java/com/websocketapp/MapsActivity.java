@@ -2,8 +2,8 @@ package com.websocketapp;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,8 +30,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private Context mContext;
     private ISWMSocket iswmSocket;
-    private double tempLat = 18.5196;
-    private double tempLon = 73.8554;
+    private double tempLat = 0;
+    private double tempLon = 0;
     private Gson gson;
     private GsonBuilder gsonBuilder;
     LatLng latLng;
@@ -42,7 +42,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         mContext = this;
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -67,22 +66,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void putMarker(double lat, double lon) {
-        latLng = new LatLng(lat, lon);
-        list.add(latLng);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mMap.clear();
-                mMap.addMarker(new MarkerOptions().position(latLng).title("Marker for Current Position"));
-                mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(latLng , 5.0f) );
-                PolylineOptions options = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
-                for (int z = 0; z < list.size(); z++) {
-                    LatLng point = list.get(z);
-                    options.add(point);
+        if(tempLat!=0 && tempLon!=0){
+            latLng = new LatLng(lat, lon);
+            list.add(latLng);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mMap.clear();
+                    mMap.addMarker(new MarkerOptions().position(latLng).title("Marker for Current Position"));
+                    mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(latLng , 14.0f) );
+                    PolylineOptions options = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
+                    for (int z = 0; z < list.size(); z++) {
+                        LatLng point = list.get(z);
+                        options.add(point);
+                    }
+                    mMap.addPolyline(options);
                 }
-                mMap.addPolyline(options);
-            }
-        });
+            });
+        }
     }
 
     private void parceJsonData(String response) {
@@ -114,41 +115,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onOpen(WebSocket webSocket, Response response) {
-        iswmSocket.subscribeTopic("gps_data:356917057992922");
+        iswmSocket.subscribeTopic("gps_data:356917056651263");
     }
 
     @Override
     public void onMessage(WebSocket webSocket, String s) {
         System.out.println("MESSAGE1:- " + s);
         parceJsonData(s);
-        tempLat = tempLat+1;
-        tempLon = tempLon+1;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                putMarker(tempLat,
-                        tempLon);
-            }
-        });
     }
 
     @Override
     public void onMessage(WebSocket webSocket, ByteString byteString) {
-        //System.out.println("MESSAGE2:- " + byteString);
-
     }
 
     @Override
     public void onClosing(WebSocket webSocket, int i, String s) {
-        //System.out.println("MESSAGE3:- " + i);
-        //System.out.println("MESSAGE4:- " + s);
     }
 
     @Override
     public void onFailure(WebSocket webSocket, Throwable throwable, Response response) {
         iswmSocket.retry();
-        //System.out.println("CAUSE"+throwable.getCause());
-        //System.out.println("MESSAGE"+throwable.getMessage());
     }
 
 }
